@@ -26,5 +26,6 @@ let package = Package(
         .testTarget(
             name: "RemoteImageViewTests",
             dependencies: ["RemoteImageView"]),
+        .binaryTarget(name: "HelloFramework", path: "HelloFramework.xcframework")
     ]
 )
