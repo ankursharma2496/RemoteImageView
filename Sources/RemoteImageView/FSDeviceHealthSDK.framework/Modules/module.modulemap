@@ -1,0 +1,11 @@
+framework module FSDeviceHealthSDK {
+  umbrella header "FSDeviceHealthSDK.h"
+
+  export *
+  module * { export * }
+}
+
+module FSDeviceHealthSDK.Swift {
+    header "FSDeviceHealthSDK-Swift.h"
+    requires objc
+}

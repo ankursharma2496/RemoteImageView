@@ -1,0 +1,102 @@
+
+/* Class = "UIButton"; normalTitle = "CHECK"; ObjectID = "2XA-P0-ulq"; */
+"2XA-P0-ulq.normalTitle" = "CHECK";
+
+/* Class = "UILabel"; text = "direction"; ObjectID = "3hu-FS-EmJ"; */
+"3hu-FS-EmJ.text" = "direction";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "7Qo-IE-5JY"; */
+"7Qo-IE-5JY.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "A7p-Zn-AWL"; */
+"A7p-Zn-AWL.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "ADc-wn-7tZ"; */
+"ADc-wn-7tZ.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "Rotate you phone fastly to validate Gyroscope"; ObjectID = "AXA-PD-Rsx"; */
+"AXA-PD-Rsx.text" = "Rotate you phone fastly to validate Gyroscope";
+
+/* Class = "UILabel"; text = "Instructutions"; ObjectID = "DeA-Zh-6Yl"; */
+"DeA-Zh-6Yl.text" = "Instructutions";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "En3-2i-qkk"; */
+"En3-2i-qkk.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "START"; ObjectID = "Fzb-QC-AXZ"; */
+"Fzb-QC-AXZ.normalTitle" = "START";
+
+/* Class = "UIButton"; normalTitle = "START"; ObjectID = "Go2-kg-n3F"; */
+"Go2-kg-n3F.normalTitle" = "START";
+
+/* Class = "UILabel"; text = "Shake you phone fastly to validate Accelerometer"; ObjectID = "HCh-pX-YCc"; */
+"HCh-pX-YCc.text" = "Shake you phone fastly to validate Accelerometer";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "HGj-1D-s77"; */
+"HGj-1D-s77.text" = "0";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "HLY-Qd-oLm"; */
+"HLY-Qd-oLm.normalTitle" = "Skip";
+
+/* Class = "UIButton"; normalTitle = "START"; ObjectID = "Ii5-RD-7BT"; */
+"Ii5-RD-7BT.normalTitle" = "START";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "IrF-9Q-w7c"; */
+"IrF-9Q-w7c.text" = "0";
+
+/* Class = "UILabel"; text = "Direction"; ObjectID = "Lmi-6n-c0G"; */
+"Lmi-6n-c0G.text" = "Direction";
+
+/* Class = "UILabel"; text = "Instructutions"; ObjectID = "Stz-nW-6Zv"; */
+"Stz-nW-6Zv.text" = "Instructutions";
+
+/* Class = "UILabel"; text = "Verify Gyroscope"; ObjectID = "Zqf-hh-cdG"; */
+"Zqf-hh-cdG.text" = "Verify Gyroscope";
+
+/* Class = "UILabel"; text = "Please count the number of times vibrations happend"; ObjectID = "cG3-57-DRM"; */
+"cG3-57-DRM.text" = "Please count the number of times vibrations happend";
+
+/* Class = "UILabel"; text = "Press Start to start the test"; ObjectID = "e6q-dJ-tAF"; */
+"e6q-dJ-tAF.text" = "Press Start to start the test";
+
+/* Class = "UILabel"; text = "Speed"; ObjectID = "f6c-g4-aDp"; */
+"f6c-g4-aDp.text" = "Speed";
+
+/* Class = "UILabel"; text = "Instructutions"; ObjectID = "gVD-dE-xZT"; */
+"gVD-dE-xZT.text" = "Instructutions";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "jHo-Uz-ODn"; */
+"jHo-Uz-ODn.text" = "Status";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "qUI-hH-0NC"; */
+"qUI-hH-0NC.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "START"; ObjectID = "qzi-WU-U5I"; */
+"qzi-WU-U5I.normalTitle" = "START";
+
+/* Class = "UILabel"; text = "Verify Proximity"; ObjectID = "rZi-k6-u7Q"; */
+"rZi-k6-u7Q.text" = "Verify Proximity";
+
+/* Class = "UILabel"; text = "Instructutions"; ObjectID = "rhe-cq-f41"; */
+"rhe-cq-f41.text" = "Instructutions";
+
+/* Class = "UILabel"; text = "Verify Accelerometer"; ObjectID = "sPH-i0-lIi"; */
+"sPH-i0-lIi.text" = "Verify Accelerometer";
+
+/* Class = "UILabel"; text = "Please bring any object near the device"; ObjectID = "vzo-f8-CKW"; */
+"vzo-f8-CKW.text" = "Please bring any object near the device";
+
+/* Class = "UILabel"; text = "Status"; ObjectID = "wvo-oC-4pl"; */
+"wvo-oC-4pl.text" = "Status";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "yCh-MA-uHm"; */
+"yCh-MA-uHm.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "  Enter the count"; ObjectID = "yR2-hu-44F"; */
+"yR2-hu-44F.placeholder" = "  Enter the count";
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "zPk-V3-rje"; */
+"zPk-V3-rje.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "Vibration Check"; ObjectID = "zcR-ue-x3Q"; */
+"zcR-ue-x3Q.text" = "Vibration Check";

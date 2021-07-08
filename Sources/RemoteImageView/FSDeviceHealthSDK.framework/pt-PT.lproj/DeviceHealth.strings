@@ -1,0 +1,27 @@
+
+/* Class = "UILabel"; text = "CHECKING…"; ObjectID = "A5O-ra-fAe"; */
+"A5O-ra-fAe.text" = "VERIFICANDO…";
+
+/* Class = "UILabel"; text = "checking…"; ObjectID = "Bms-ei-VMN"; */
+"Bms-ei-VMN.text" = "verificando…";
+
+/* Class = "UILabel"; text = "checking…"; ObjectID = "Eg9-7e-KdG"; */
+"Eg9-7e-KdG.text" = "verificando…";
+
+/* Class = "UILabel"; text = "Insurance coverage"; ObjectID = "Fxq-vl-40e"; */
+"Fxq-vl-40e.text" = "Cobertura do seguro";
+
+/* Class = "UILabel"; text = "Device model"; ObjectID = "I0o-1V-mNF"; */
+"I0o-1V-mNF.text" = "Modelo do dispositivo";
+
+/* Class = "UILabel"; text = "Device Information"; ObjectID = "IMJ-iM-Q07"; */
+"IMJ-iM-Q07.text" = "Informação de dispositivo";
+
+/* Class = "UIButton"; normalTitle = "CONTINUE"; ObjectID = "Kqp-4y-S4f"; */
+"Kqp-4y-S4f.normalTitle" = "PROSSEGUIR";
+
+/* Class = "UILabel"; text = "CHECKING…"; ObjectID = "mHt-L3-GtO"; */
+"mHt-L3-GtO.text" = "VERIFICANDO…";
+
+/* Class = "UILabel"; text = "checking…"; ObjectID = "nv4-yV-rxm"; */
+"nv4-yV-rxm.text" = "verificando…";

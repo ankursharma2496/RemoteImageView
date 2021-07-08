@@ -1,0 +1,603 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.4 (swiftlang-1205.0.26.9 clang-1205.0.19.55)
+// swift-module-flags: -target arm64-apple-ios13.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name FSDeviceHealthSDK
+import AVFoundation
+import AudioToolbox
+import CoreBluetooth
+import CoreLocation
+@_exported import FSDeviceHealthSDK
+import Foundation
+import LocalAuthentication
+import MediaPlayer
+import SensingKit
+import Speech
+import Swift
+import SystemConfiguration
+import UIKit
+import Vision
+public enum KeychainItemAccessibility {
+  case afterFirstUnlock
+  case afterFirstUnlockThisDeviceOnly
+  case always
+  @available(iOS 8, *)
+  case whenPasscodeSetThisDeviceOnly
+  case alwaysThisDeviceOnly
+  case whenUnlocked
+  case whenUnlockedThisDeviceOnly
+  public static func == (a: FSDeviceHealthSDK.KeychainItemAccessibility, b: FSDeviceHealthSDK.KeychainItemAccessibility) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum Model : Swift.String {
+  case simulator, iPhone4, iPhone4S, iPhone5, iPhone5S, iPhone5C, iPhone6, iPhone6Plus, iPhone6S, iPhone6SPlus, iPhoneSE, iPhone7, iPhone7Plus, iPhone8, iPhone8Plus, iPhoneX, iPhoneXS, iPhoneXSMax, iPhoneXR, iPhone11, iPhone11Pro, iPhone11ProMax, iPhoneSE2, iPhone12Mini, iPhone12, iPhone12Pro, iPhone12ProMax, unrecognized
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension UIDevice {
+  public var type: FSDeviceHealthSDK.Model {
+    get
+  }
+}
+public enum ReachabilityError : Swift.Error {
+  case failedToCreateWithAddress(Darwin.sockaddr, Swift.Int32)
+  case failedToCreateWithHostname(Swift.String, Swift.Int32)
+  case unableToSetCallback(Swift.Int32)
+  case unableToSetDispatchQueue(Swift.Int32)
+  case unableToGetFlags(Swift.Int32)
+}
+@available(*, unavailable, renamed: "Notification.Name.reachabilityChanged")
+public let reachabilityChangedNotification: Foundation.NSNotification.Name
+extension NSNotification.Name {
+  public static let reachabilityChanged: Foundation.Notification.Name
+}
+public class Reachability {
+  public typealias NetworkReachable = (FSDeviceHealthSDK.Reachability) -> ()
+  public typealias NetworkUnreachable = (FSDeviceHealthSDK.Reachability) -> ()
+  @available(*, unavailable, renamed: "Connection")
+  public enum NetworkStatus : Swift.CustomStringConvertible {
+    case notReachable, reachableViaWiFi, reachableViaWWAN
+    public var description: Swift.String {
+      get
+    }
+    public static func == (a: FSDeviceHealthSDK.Reachability.NetworkStatus, b: FSDeviceHealthSDK.Reachability.NetworkStatus) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum Connection : Swift.CustomStringConvertible {
+    case unavailable, wifi, cellular
+    public var description: Swift.String {
+      get
+    }
+    @available(*, deprecated, renamed: "unavailable")
+    public static let none: FSDeviceHealthSDK.Reachability.Connection
+    public static func == (a: FSDeviceHealthSDK.Reachability.Connection, b: FSDeviceHealthSDK.Reachability.Connection) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public var whenReachable: FSDeviceHealthSDK.Reachability.NetworkReachable?
+  public var whenUnreachable: FSDeviceHealthSDK.Reachability.NetworkUnreachable?
+  @available(*, deprecated, renamed: "allowsCellularConnection")
+  final public let reachableOnWWAN: Swift.Bool
+  public var allowsCellularConnection: Swift.Bool
+  public var notificationCenter: Foundation.NotificationCenter
+  @available(*, deprecated, renamed: "connection.description")
+  public var currentReachabilityString: Swift.String {
+    get
+  }
+  @available(*, unavailable, renamed: "connection")
+  public var currentReachabilityStatus: FSDeviceHealthSDK.Reachability.Connection {
+    get
+  }
+  public var connection: FSDeviceHealthSDK.Reachability.Connection {
+    get
+  }
+  required public init(reachabilityRef: SystemConfiguration.SCNetworkReachability, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main)
+  convenience public init(hostname: Swift.String, queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
+  convenience public init(queueQoS: Dispatch.DispatchQoS = .default, targetQueue: Dispatch.DispatchQueue? = nil, notificationQueue: Dispatch.DispatchQueue? = .main) throws
+  @objc deinit
+}
+extension Reachability {
+  public func startNotifier() throws
+  public func stopNotifier()
+  @available(*, deprecated, message: "Please use `connection != .none`")
+  public var isReachable: Swift.Bool {
+    get
+  }
+  @available(*, deprecated, message: "Please use `connection == .cellular`")
+  public var isReachableViaWWAN: Swift.Bool {
+    get
+  }
+  @available(*, deprecated, message: "Please use `connection == .wifi`")
+  public var isReachableViaWiFi: Swift.Bool {
+    get
+  }
+  public var description: Swift.String {
+    get
+  }
+}
+public struct DeviceInfoModel : Swift.Codable {
+  public var operatingsystem: Swift.String
+  public var operatingSystemVersion: Swift.String
+  public var marketName: Swift.String
+  public var deviceId: Swift.String
+  public var osName: Swift.String
+  public var modelName: Swift.String
+  public var manufacturer: Swift.String
+  public var totalStorage: Swift.String
+  public var ram: Swift.String
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+open class KeychainWrapper {
+  @available(*, message: "KeychainWrapper.defaultKeychainWrapper is deprecated, use KeychainWrapper.standard instead")
+  public static let defaultKeychainWrapper: FSDeviceHealthSDK.KeychainWrapper
+  public static let standard: FSDeviceHealthSDK.KeychainWrapper
+  public var serviceName: Swift.String {
+    get
+  }
+  public var accessGroup: Swift.String? {
+    get
+  }
+  public init(serviceName: Swift.String, accessGroup: Swift.String? = nil)
+  open func hasValue(forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool
+  open func accessibilityOfKey(_ key: Swift.String) -> FSDeviceHealthSDK.KeychainItemAccessibility?
+  open func allKeys() -> Swift.Set<Swift.String>
+  open func integer(forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Int?
+  open func float(forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Float?
+  open func double(forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Double?
+  open func bool(forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool?
+  open func string(forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.String?
+  open func object(forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Foundation.NSCoding?
+  open func data(forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Foundation.Data?
+  open func dataRef(forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Foundation.Data?
+  @discardableResult
+  open func set(_ value: Swift.Int, forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool
+  @discardableResult
+  open func set(_ value: Swift.Float, forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool
+  @discardableResult
+  open func set(_ value: Swift.Double, forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool
+  @discardableResult
+  open func set(_ value: Swift.Bool, forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool
+  @discardableResult
+  open func set(_ value: Swift.String, forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool
+  @discardableResult
+  open func set(_ value: Foundation.NSCoding, forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool
+  @discardableResult
+  open func set(_ value: Foundation.Data, forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool
+  @available(*, message: "remove is deprecated, use removeObject instead")
+  @discardableResult
+  open func remove(key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool
+  @discardableResult
+  open func removeObject(forKey key: Swift.String, withAccessibility accessibility: FSDeviceHealthSDK.KeychainItemAccessibility? = nil) -> Swift.Bool
+  open func removeAllKeys() -> Swift.Bool
+  open class func wipeKeychain()
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class TestResult {
+  final public let deviceInfo: FSDeviceHealthSDK.DeviceInfoModel
+  public var tests: [FSDeviceHealthSDK.TestCaseResult]
+  @objc deinit
+}
+public struct TestResultOutput : Swift.Codable {
+  public let deviceInfo: FSDeviceHealthSDK.DeviceInfoModel
+  public var tests: [FSDeviceHealthSDK.TestResultOutput.Result]
+  public struct Result : Swift.Codable {
+    public func encode(to encoder: Swift.Encoder) throws
+    public init(from decoder: Swift.Decoder) throws
+  }
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public protocol SDKSettingsProtocol {
+  static func sdkVersion() -> Swift.String
+}
+@_hasMissingDesignatedInitializers public class SDKSettings : FSDeviceHealthSDK.SDKSettingsProtocol {
+  public static func sdkVersion() -> Swift.String
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers public class SDKConfig {
+  @objc deinit
+}
+extension SDKError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public enum SDKError : Swift.Error {
+  public enum ApplicationError : Swift.String, Swift.Error {
+    case unknownError
+    case sessionError
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum NetworkError : Swift.String, Swift.Error {
+    case noInternetConnection
+    case connectionTimeOut
+    case missingUrl
+    case unknownError
+    case internalServerError
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum ServerError : Swift.String, Swift.Error {
+    case unAuthorized
+    case unknownError
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum JSONError : Swift.String, Swift.Error {
+    case jsonDecodeError
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  case applicationError(error: FSDeviceHealthSDK.SDKError.ApplicationError)
+  case networkError(error: FSDeviceHealthSDK.SDKError.NetworkError)
+  case serverError(reason: FSDeviceHealthSDK.SDKError.ServerError)
+  case jsonError(reason: FSDeviceHealthSDK.SDKError.JSONError)
+}
+public struct SDKInput : Swift.Encodable {
+  public init(testId: Swift.String, profileId: Swift.String, partnerId: Swift.String)
+  public func encode(to encoder: Swift.Encoder) throws
+}
+public enum TestResultType : Swift.String, Swift.Codable {
+  case passed
+  case failed
+  case skip
+  case notAvailable
+  case notTested
+  case unsupported
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum TestError : Swift.String {
+  case unknown
+  case skipped
+  case notAvialable
+  case deviceIsJailBreak
+  case gyroscopeFail
+  case gyroscopeNotAvailable
+  case stopped
+  case proximityTest
+  case vibrationTest
+  case wifiTest
+  case wifiNotOn
+  case carrierNetOff
+  case carrierTest
+  case accelerometerTestFail
+  case accelerometerTestNotAvailable
+  case gpsTestFail
+  case gpsPermissionDenied
+  case gpsNotAvailable
+  case bluetoothTestFail
+  case bluetoothNotAvailable
+  case bluetoothPermissionDenied
+  case bluetoothOff
+  case volumeTest
+  case screenshotTest
+  case lightSensorTest
+  case touchTest
+  case powerAndHomeTest
+  case earphoneTest
+  case faceFingerprintTest
+  case faceFingerprintPermissionDenied
+  case microphoneTest
+  case batteryTestFail
+  case frontCameraTest
+  case microphoneTestPermissionDenied
+  case externalSpeakerTest
+  case internalSpeakerTest
+  case batteryTest
+  case backCameraTest
+  case cameraPermissionDenied
+  case speakerPermissionDenied
+  case facefingerPermissionDenied
+  case homeButtonNotAvailable
+  case testRetryLimitExceed
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum TestType : Swift.Equatable {
+  case buttons(FSDeviceHealthSDK.TestType.Buttons)
+  case connectivity(FSDeviceHealthSDK.TestType.Connectivity)
+  case screen(FSDeviceHealthSDK.TestType.Screen)
+  case battery(FSDeviceHealthSDK.TestType.Battery)
+  case other(FSDeviceHealthSDK.TestType.Other)
+  case motionSensor(FSDeviceHealthSDK.TestType.MotionSensor)
+  case hardware(FSDeviceHealthSDK.TestType.Hardware)
+  case sound(FSDeviceHealthSDK.TestType.Sound)
+  case digitalIdentification(FSDeviceHealthSDK.TestType.DigitalIdentification)
+  case camera(FSDeviceHealthSDK.TestType.Camera)
+  case group
+  case defaultTestGroup
+  case none
+  public enum DefaultTestGroup : Swift.String {
+    case defaultTestGroup
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum MotionSensor : Swift.String {
+    case accelerometer
+    case gyroscope
+    case compass
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Camera : Swift.String {
+    case frontCam
+    case backCam
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Hardware : Swift.String {
+    case lightSensor
+    case proximity
+    case vibration
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Buttons : Swift.String {
+    case volumeUp
+    case volumeDown
+    case power
+    case home
+    case buttons
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Connectivity : Swift.String {
+    case carrierNetwrok
+    case wifi
+    case gps
+    case bluetooth
+    case connections
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Screen : Swift.String {
+    case fullScreen
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Battery : Swift.String {
+    case powerHealth
+    case charginPower
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Sound : Swift.String {
+    case earphone
+    case mic
+    case externalAudio
+    case internalAudio
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum DigitalIdentification : Swift.String {
+    case faceId
+    case fingerPrint
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum Other : Swift.String {
+    case jailBreak
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public static func == (lhs: FSDeviceHealthSDK.TestType, rhs: FSDeviceHealthSDK.TestType) -> Swift.Bool
+}
+public enum TestCaseType : Swift.String {
+  case mandatory, optional
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct TestCase {
+  public let name: Swift.String
+  public let type: FSDeviceHealthSDK.TestType
+  public let required: FSDeviceHealthSDK.TestCaseType
+  public let order: Swift.Int
+  public let limit: Swift.Int
+  public let subTests: [FSDeviceHealthSDK.TestCase]
+  public let continueType: FSDeviceHealthSDK.ContinueTestType
+  public let startType: FSDeviceHealthSDK.ContinueTestType
+  public let id: Swift.String
+  public init(id: Swift.String, name: Swift.String, type: FSDeviceHealthSDK.TestType, required: FSDeviceHealthSDK.TestCaseType, order: Swift.Int, continueType: FSDeviceHealthSDK.ContinueTestType = .manual, subTests: [FSDeviceHealthSDK.TestCase] = [], startType: FSDeviceHealthSDK.ContinueTestType = .automatic, limit: Swift.Int = Int.max)
+}
+public enum ContinueTestType {
+  case manual
+  case automatic
+  public static func == (a: FSDeviceHealthSDK.ContinueTestType, b: FSDeviceHealthSDK.ContinueTestType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct TestCaseResult {
+  public let name: Swift.String
+  public let type: FSDeviceHealthSDK.TestType
+  public var result: FSDeviceHealthSDK.TestResultType
+  public let percentage: Swift.Float?
+  public var testError: FSDeviceHealthSDK.TestError?
+  public var testRetryCount: Swift.Int
+}
+public struct Prerequisite {
+  public let type: FSDeviceHealthSDK.PrerequisiteType
+  public let data: Any?
+}
+public enum PrerequisiteType {
+  case string
+  case customView
+  case image
+  public static func == (a: FSDeviceHealthSDK.PrerequisiteType, b: FSDeviceHealthSDK.PrerequisiteType) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct SavedTestResult : Swift.Codable {
+  public func encode(to encoder: Swift.Encoder) throws
+  public init(from decoder: Swift.Decoder) throws
+}
+public protocol DeviceHealthInteractor : AnyObject {
+  func startTest()
+  func stopTest()
+  func skipTest()
+  func nextTest()
+  func retryTest()
+  func loadTest()
+}
+@_hasMissingDesignatedInitializers public class FSDeviceHealth {
+  public var interactor: FSDeviceHealthSDK.DeviceHealthInteractor?
+  public var view: UIKit.UIViewController?
+  public static let instance: FSDeviceHealthSDK.FSDeviceHealth
+  public func initialise(input: FSDeviceHealthSDK.SDKInput, delegate: FSDeviceHealthSDK.FSDeviceHealthDelegate? = nil) -> UIKit.UIViewController
+  @objc deinit
+}
+public enum ButtonType : Swift.String {
+  case start
+  case stop
+  case next
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public protocol FSDeviceHealthDelegate : AnyObject {
+  func error(error: Swift.Error)
+  func testCompleted(result: FSDeviceHealthSDK.TestResultOutput)
+}
+extension FSDeviceHealthSDK.KeychainItemAccessibility : Swift.Equatable {}
+extension FSDeviceHealthSDK.KeychainItemAccessibility : Swift.Hashable {}
+extension FSDeviceHealthSDK.Model : Swift.Equatable {}
+extension FSDeviceHealthSDK.Model : Swift.Hashable {}
+extension FSDeviceHealthSDK.Model : Swift.RawRepresentable {}
+@available(*, unavailable, renamed: "Connection")
+extension FSDeviceHealthSDK.Reachability.NetworkStatus : Swift.Equatable {}
+@available(*, unavailable, renamed: "Connection")
+extension FSDeviceHealthSDK.Reachability.NetworkStatus : Swift.Hashable {}
+extension FSDeviceHealthSDK.Reachability.Connection : Swift.Equatable {}
+extension FSDeviceHealthSDK.Reachability.Connection : Swift.Hashable {}
+extension FSDeviceHealthSDK.SDKError.ApplicationError : Swift.Equatable {}
+extension FSDeviceHealthSDK.SDKError.ApplicationError : Swift.Hashable {}
+extension FSDeviceHealthSDK.SDKError.ApplicationError : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.SDKError.ServerError : Swift.Equatable {}
+extension FSDeviceHealthSDK.SDKError.ServerError : Swift.Hashable {}
+extension FSDeviceHealthSDK.SDKError.ServerError : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.SDKError.JSONError : Swift.Equatable {}
+extension FSDeviceHealthSDK.SDKError.JSONError : Swift.Hashable {}
+extension FSDeviceHealthSDK.SDKError.JSONError : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.SDKError.NetworkError : Swift.Equatable {}
+extension FSDeviceHealthSDK.SDKError.NetworkError : Swift.Hashable {}
+extension FSDeviceHealthSDK.SDKError.NetworkError : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestResultType : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestResultType : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestResultType : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestError : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestError : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestError : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.DefaultTestGroup : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.DefaultTestGroup : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.DefaultTestGroup : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.MotionSensor : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.MotionSensor : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.MotionSensor : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.Camera : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.Camera : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.Camera : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.Hardware : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.Hardware : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.Hardware : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.Buttons : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.Buttons : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.Buttons : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.Connectivity : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.Connectivity : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.Connectivity : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.Screen : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.Screen : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.Screen : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.Battery : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.Battery : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.Battery : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.Sound : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.Sound : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.Sound : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.DigitalIdentification : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.DigitalIdentification : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.DigitalIdentification : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestType.Other : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestType.Other : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestType.Other : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.TestCaseType : Swift.Equatable {}
+extension FSDeviceHealthSDK.TestCaseType : Swift.Hashable {}
+extension FSDeviceHealthSDK.TestCaseType : Swift.RawRepresentable {}
+extension FSDeviceHealthSDK.ContinueTestType : Swift.Equatable {}
+extension FSDeviceHealthSDK.ContinueTestType : Swift.Hashable {}
+extension FSDeviceHealthSDK.PrerequisiteType : Swift.Equatable {}
+extension FSDeviceHealthSDK.PrerequisiteType : Swift.Hashable {}
+extension FSDeviceHealthSDK.ButtonType : Swift.Equatable {}
+extension FSDeviceHealthSDK.ButtonType : Swift.Hashable {}
+extension FSDeviceHealthSDK.ButtonType : Swift.RawRepresentable {}

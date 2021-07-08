@@ -1,0 +1,33 @@
+
+/* Class = "UIButton"; normalTitle = "Skip"; ObjectID = "FGz-4y-1g7"; */
+"FGz-4y-1g7.normalTitle" = "Skip";
+
+/* Class = "UILabel"; text = "Status 1"; ObjectID = "OYi-5p-97Z"; */
+"OYi-5p-97Z.text" = "Status 1";
+
+/* Class = "UIButton"; normalTitle = "Start"; ObjectID = "buc-DW-yIi"; */
+"buc-DW-yIi.normalTitle" = "Start";
+
+/* Class = "UILabel"; text = "Shake your phone fastly to validate your device."; ObjectID = "d6W-TJ-zGF"; */
+"d6W-TJ-zGF.text" = "Shake your phone fastly to validate your device.";
+
+/* Class = "UILabel"; text = "Status 2"; ObjectID = "eUQ-l9-B9m"; */
+"eUQ-l9-B9m.text" = "Status 2";
+
+/* Class = "UIButton"; normalTitle = "Check"; ObjectID = "fkT-o4-4Mv"; */
+"fkT-o4-4Mv.normalTitle" = "Check";
+
+/* Class = "UILabel"; text = "Instructions"; ObjectID = "jIS-Us-lEG"; */
+"jIS-Us-lEG.text" = "Instructions";
+
+/* Class = "UILabel"; text = "Measurement"; ObjectID = "m46-FY-alX"; */
+"m46-FY-alX.text" = "Measurement";
+
+/* Class = "UITextField"; placeholder = " Enter the number of times vibrated"; ObjectID = "qUX-qG-UaO"; */
+"qUX-qG-UaO.placeholder" = " Enter the number of times vibrated";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "qte-da-B5r"; */
+"qte-da-B5r.text" = "Title";
+
+/* Class = "UILabel"; text = "Value"; ObjectID = "u7G-mh-bUl"; */
+"u7G-mh-bUl.text" = "Value";
